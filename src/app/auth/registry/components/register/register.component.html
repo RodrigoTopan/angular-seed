@@ -1,0 +1,110 @@
+<form [formGroup]="form" novalidate>
+  <div fxLayout="column" fxLayoutAlign="space-around center">
+    <mat-card class="register-panel">
+      <mat-toolbar color="primary">
+        <span class="fill-field">Cadastro</span>
+      </mat-toolbar>
+      <br>
+      <br>
+      <br>
+      <div fxLayout="row" fxLayoutAlign="space-between">
+        <mat-form-field fxFlex="100">
+          <input matInput type="text" placeholder="Digite seu nome" name="name" formControlName="name">
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between">
+        <mat-form-field fxFlex="100">
+          <input matInput type="text" placeholder="Digite seu CPF" name="cpf" formControlName="cpf">
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between">
+        <mat-form-field fxFlex="40">
+          <input matInput type="text" placeholder="Número do seu registro" name="registry_id" formControlName="registry_id">
+          <mat-hint>Registro Institucional</mat-hint>
+        </mat-form-field>
+        <mat-form-field fxFlex="40">
+          <input matInput type="text" placeholder="Número do seu segundo registro" name="registry_id_2" formControlName="registry_id_2">
+          <mat-hint>Se possuir</mat-hint>
+        </mat-form-field>
+        <span matTooltip="Apenas se possuir um segundo registro">
+          <mat-icon>help</mat-icon>
+        </span>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between">
+        <mat-form-field fxFlex="40">
+          <input matInput type="text" placeholder="Endereço" name="full_adress" formControlName="full_adress">
+        </mat-form-field>
+        <mat-form-field fxFlex="40">
+          <input matInput type="text" placeholder="Número do endereço" name="adress_number" formControlName="adress_number">
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between">
+        <mat-form-field fxFlex="40">
+          <input matInput type="text" placeholder="Distrito" name="district" formControlName="district">
+        </mat-form-field>
+        <mat-form-field fxFlex="40">
+          <input matInput type="text" placeholder="Estado" name="state" formControlName="state">
+        </mat-form-field>
+        <mat-form-field fxFlex="40">
+          <input matInput type="text" placeholder="Cidade" name="city" formControlName="city">
+        </mat-form-field>
+        <mat-form-field fxFlex="40">
+          <input matInput type="text" placeholder="CEP" name="postal_code" formControlName="postal_code">
+        </mat-form-field>
+      </div>
+      <br>
+      <div fxLayout="row" fxLayoutAlign="space-between">
+        <mat-form-field fxFlex="40">
+          <input matInput type="text" placeholder="Celular" name="phone_number" formControlName="phone_number">
+        </mat-form-field>
+        <mat-form-field fxFlex="50">
+          <input matInput type="text" placeholder="Whatsapp" name="whatsapp_flag" formControlName="whatsapp_flag">
+        </mat-form-field>
+      </div>
+      <br>
+      <div fxLayout="row" fxLayoutAlign="space-between">
+        <mat-form-field fxFlex="100">
+          <input matInput type="email" placeholder="Digite seu email" name="email" formControlName="email">
+          <mat-hint>Digite seu email</mat-hint>
+        </mat-form-field>
+      </div>
+      <br>
+      <div fxLayout="row" fxLayoutAlign="space-between">
+        <mat-form-field fxFlex="40">
+          <input matInput type="password" placeholder="Digite sua senha" name="password" formControlName="password">
+        </mat-form-field>
+        <mat-form-field fxFlex="40">
+          <input matInput type="password" placeholder="Confirme sua senha" name="confirmPassword" formControlName="confirmPassword">
+        </mat-form-field>
+        <span matTooltip="Senha deve conter ao menos 6 caracteres">
+          <mat-icon>help</mat-icon>
+        </span>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between">
+        <mat-form-field fxFlex="100">
+          <mat-select>
+            <!--<mat-option *ngFor="let food of foods" [value]="food.value">
+            {{food.viewValue}}
+          </mat-option>-->
+            <mat-option *ngFor="let bond of bonds" [value]="bond.value">
+              {{ bond.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <br>
+      <div fxLayoutAlign="space-evenly">
+        <input class="ng-hide" id="input-file-id" multiple type="file" hidden />
+        <label for="input-file-id" class="mat-raised-button" style="background:#071326;color:white">Escolher foto</label>
+        <button mat-raised-button color="primary" style="background:springgreen; color: white;" [disabled]="form.invalid"
+          (click)="register()">
+          Cadastrar
+        </button>
+
+        <a mat-raised-button style="background-color:tomato;color:white" routerLink="/login">
+          Voltar
+        </a>
+      </div>
+    </mat-card>
+  </div>
+</form>

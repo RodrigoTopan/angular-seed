@@ -1,1 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+/*@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';*/
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+body {
+    background:url("https://media.giphy.com/media/QZbAPWbfGUjZK/source.gif");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
