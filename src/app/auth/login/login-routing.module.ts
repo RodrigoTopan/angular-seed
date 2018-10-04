@@ -7,7 +7,12 @@ export const LoginRoutes: Routes = [
   {
     path: 'login',
     component: EnterComponent,
-    children: [{ path: '', component: LoginComponent }]
+    children: [
+      {
+        path: '',
+        component: LoginComponent
+      }
+    ]
   }
 ];
 

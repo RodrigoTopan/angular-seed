@@ -11,11 +11,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 //import { RegistryComponent } from './auth/registry/components/registry.component';
 import { RegistryModule } from './auth/registry/registry.module';
-import { RegistryRoutingModule } from './auth/registry/registry-routing.component';
+import { RegistryRoutingModule } from './auth/registry/registry-routing.module';
 
 //Pacote do Administrador
-import { AdminModule } from './admin/admin.module';
-import { AdminRoutingModule } from './admin/admin-routing.module';
+import { EventsModule as AdminEventModule } from './admin/events/event.module';
+import { EventRoutingModule as AdminEventRoutingModule } from './admin/events/event-routing.module';
+
+//Dashboard
+import { DashboardModule } from './admin/dashboard/dashboard.module';
+import { DashboardRoutingModule } from './admin/dashboard/dashboard-routing.module';
 
 //Pacote do Público
 
@@ -33,8 +37,11 @@ import { AdminRoutingModule } from './admin/admin-routing.module';
     LoginRoutingModule,
     RegistryModule,
     RegistryRoutingModule,
-    AdminModule,
-    AdminRoutingModule,
+    AdminEventModule,
+    AdminEventRoutingModule,
+    //AdminEventModule,
+    DashboardModule,
+    DashboardRoutingModule,
     AppRoutingModule //It must be the last imported module
   ],
   providers: [],

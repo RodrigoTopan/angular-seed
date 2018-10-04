@@ -6,17 +6,15 @@ import { Routes, RouterModule, Router } from '@angular/router';
  * redirecionar para a minha porta de login
  */
 export const routes: Routes = [
-    {
-        path: '',
-        redirectTo: '/login',
-        pathMatch: 'full'
-    }
+  {
+    path: '',
+    redirectTo: '/login',
+    pathMatch: 'full'
+  }
 ];
 
-@NgModule(
-    {
-        imports: [RouterModule.forRoot(routes)],
-        exports: [RouterModule]
-    }
-)
-export class AppRoutingModule { }
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule {}
