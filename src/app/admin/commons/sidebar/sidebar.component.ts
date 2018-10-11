@@ -8,8 +8,10 @@ interface RouteInfo {
   class: string;
 }
 export const ROUTES: RouteInfo[] = [
+  { path: 'account', title: 'Conta', icon: 'account-circle', class: '' },
   { path: 'admin/dashboard', title: 'Dashboard', icon: 'dashboard', class: '' },
-  { path: 'admin/events', title: 'Eventos', icon: 'person', class: '' }
+  { path: 'admin/events', title: 'Eventos', icon: 'event', class: '' },
+  { path: 'admin/events', title: 'Atividades', icon: 'list', class: '' }
 ];
 
 @Component({
@@ -25,10 +27,10 @@ export class SidebarComponent implements OnInit {
   ngOnInit() {
     this.menuItems = ROUTES.filter(menuItem => menuItem);
   }
-  isMobileMenu() {
+  /*isMobileMenu() {
     if ($(window).width() > 991) {
       return false;
     }
     return true;
-  }
+  }*/
 }

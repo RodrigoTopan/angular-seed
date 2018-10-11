@@ -20,12 +20,14 @@ import { EventRoutingModule as AdminEventRoutingModule } from './admin/events/ev
 //Dashboard
 import { DashboardModule } from './admin/dashboard/dashboard.module';
 import { DashboardRoutingModule } from './admin/dashboard/dashboard-routing.module';
+import { MaskDirective } from './shared/directive/mask.directive';
 
 //Pacote do Público
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MaskDirective
     //RegistryComponent
   ],
   imports: [

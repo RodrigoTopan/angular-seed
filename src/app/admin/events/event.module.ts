@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { EnterComponent } from './components/enter.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AdminComponentsModule } from '../commons/adminComponents.module';
+import { EventService } from './services/event.service';
 
 //Angular Material
 import {
@@ -18,6 +19,7 @@ import {
   MatIconModule,
   MatSnackBarModule,
   MatCardModule,
+  MatTableModule,
   MatToolbarModule
 } from '@angular/material';
 
@@ -27,6 +29,7 @@ import {
     RouterModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatTableModule,
     MatInputModule,
     MatButtonModule,
     MatListModule,
@@ -38,6 +41,7 @@ import {
     MatToolbarModule,
     AdminComponentsModule
   ],
-  declarations: [ListComponent, EnterComponent]
+  declarations: [ListComponent, EnterComponent],
+  providers: [EventService]
 })
 export class EventsModule {}

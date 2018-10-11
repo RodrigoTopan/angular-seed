@@ -21,16 +21,14 @@ import { LoginService } from '../../services/login.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
   form: FormGroup;
 
   constructor(
-    private fb: FormBuilder,//Importando os recursos para o componente
+    private fb: FormBuilder, //Importando os recursos para o componente
     private snackbar: MatSnackBar,
     private router: Router,
     private loginService: LoginService
-  ) { }
-
+  ) {}
 
   ngOnInit() {
     //Método responsável por criar o formulário na instância do objeto
@@ -49,7 +47,7 @@ export class LoginComponent implements OnInit {
   login() {
     //invalid é sempre true quando os validadores não são atendidos
     if (this.form.invalid) {
-      this.snackbar.open("Dados inválidos", "Erro", { duration: 5000 });
+      this.snackbar.open('Dados inválidos', 'Erro', { duration: 5000 });
       return;
     }
     //Adicionando os dados válidos do formulário dentro da classe login
@@ -82,18 +80,18 @@ export class LoginComponent implements OnInit {
       },
       err => {
         console.log('DEU RUIM NO LOGIN');
-        let msg: string = 'Tente novamente em instantes ou nos contate em : (13) 99703-5994';
-        if (err['status'] = 401) {
+        let msg: string =
+          'Tente novamente em instantes ou nos contate em : (13) 99703-5994';
+        if ((err['status'] = 401)) {
           msg = 'Email/Senha inválido(s)';
         }
-        this.snackbar.open(msg, "Erro", { duration: 5000 });
+        this.snackbar.open(msg, 'Erro', { duration: 5000 });
       }
-    )
+    );
     alert(JSON.stringify(this.form.value));
   }
 
   logout() {
     localStorage['token'] = null;
   }
-
 }

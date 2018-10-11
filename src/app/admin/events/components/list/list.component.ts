@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataSource } from '@angular/cdk/collections';
+import { EventService } from '../../services/event.service';
+import { Event } from '../../models/event.model';
 import {
   MatTableDataSource,
   MatSnackBar,
@@ -9,9 +11,6 @@ import {
   MatSort
 } from '@angular/material';
 import { Observable } from 'rxjs';
-import 'rxjs/add/observable/of';
-
-import { LancamentoService, Lancamento } from '../../../../shared';
 
 @Component({
   selector: 'app-list',
@@ -19,24 +18,31 @@ import { LancamentoService, Lancamento } from '../../../../shared';
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
-  dataSource: MatTableDataSource<Lancamento>;
-  colunas: string[] = ['data', 'tipo', 'localizacao'];
+  private events: Event[] = [];
 
   constructor(
-    private lancamentoService: LancamentoService,
+    private eventService: EventService,
     private snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
-    this.lancamentoService.listarTodosLancamentos().subscribe(
-      data => {
-        const lancamentos = data['data'] as Lancamento[];
-        this.dataSource = new MatTableDataSource<Lancamento>(lancamentos);
+    this.eventService.list().subscribe(
+      (events: any[]) => {
+        console.log('eventos', events[0]);
+        this.events.push(
+          new Event(
+            events[0].name,
+            events[0].description,
+            events[0].beginning_date,
+            events[0].end_date
+          )
+        );
       },
       err => {
-        const msg: string = 'Erro obtendo lançamentos.';
+        const msg: string = 'Erro obtendo eventos.';
         this.snackBar.open(msg, 'Erro', { duration: 5000 });
       }
     );
+    console.log(this.events);
   }
 }
