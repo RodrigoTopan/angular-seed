@@ -1,0 +1,39 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card card-plain">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title mt-0"> Minhas Atividades </h4>
+            <p class="card-category"> Lista de Atividades</p>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead class="">
+                  <th>Nome</th>
+                  <th>Descrição</th>
+                  <th>Inicio</th>
+                  <th>Quorum</th>
+                  <th>Capacidade</th>
+                  <th>Periodo</th>
+                  <th>Evento</th>
+                  <th>Local</th>
+                  <th>Sala</th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let e of events">
+                    <td>{{ e.name }}</td>
+                    <td>{{ e.description }}</td>
+                    <td>{{ e.beginning_date }}</td>
+                    <td>{{ e.end_date }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,14 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ListComponent } from './components/list/list.component';
-//import { CreateComponent } from './components/create/create.component';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { EnterComponent } from './components/enter.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AdminComponentsModule } from '../commons/adminComponents.module';
-import { EventService } from './services/event.service';
+import { ActivityService } from './services/activity.service';
 
 //Angular Material
 import {
@@ -20,8 +19,7 @@ import {
   MatSnackBarModule,
   MatCardModule,
   MatTableModule,
-  MatToolbarModule,
-  MatPaginatorModule
+  MatToolbarModule
 } from '@angular/material';
 
 @NgModule({
@@ -40,10 +38,9 @@ import {
     FlexLayoutModule,
     MatCardModule,
     MatToolbarModule,
-    MatPaginatorModule,
     AdminComponentsModule
   ],
   declarations: [ListComponent, EnterComponent],
-  providers: [EventService]
+  providers: [ActivityService]
 })
-export class EventsModule {}
+export class ActivitiesModule {}

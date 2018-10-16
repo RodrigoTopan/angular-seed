@@ -5,6 +5,7 @@ export class Event {
     public description: string,
     public beginning_date: string,
     public end_date: string,
+    public photo?,
     public created_at?,
     public updated_at?
   ) {}

@@ -9,6 +9,62 @@
           </div>
           <div class="card-body">
             <div class="table-responsive">
+              <mat-table class="table table-hover" [dataSource]="dataSource" matSort>
+                <mat-header-row *matHeaderRowDef="colunas"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: colunas;"></mat-row>
+                <ng-container matColumnDef="name">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    Nome
+                  </mat-header-cell>
+                  <mat-cell *matCellDef="let event">
+                    {{ event.name }}
+                  </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="description">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    Descrição
+                  </mat-header-cell>
+                  <mat-cell *matCellDef="let event">
+                    {{ event.description }}
+                  </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="beginning_date">
+                  <mat-header-cell *matHeaderCellDef>
+                    Data Inicio
+                  </mat-header-cell>
+                  <mat-cell *matCellDef="let event">
+                    {{ event.beginning_date }}
+                  </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="end_date">
+                  <mat-header-cell *matHeaderCellDef>
+                    Data Fim
+                  </mat-header-cell>
+                  <mat-cell *matCellDef="let event">
+                    {{ event.end_date }}
+                  </mat-cell>
+                </ng-container>
+              </mat-table>
+              <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 15, 25]">
+              </mat-paginator>
+              <button mat-mini-fab class="float-button" (click)="openDialog()">
+                <mat-icon>add</mat-icon>
+              </button>
+            </div>
+          </div>
+
+          <!--
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card card-plain">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title mt-0"> Eventos </h4>
+            <p class="card-category"> Lista de Eventos</p>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
               <table class="table table-hover">
                 <thead class="">
                   <th>Nome</th>
@@ -30,5 +86,9 @@
         </div>
       </div>
     </div>
+    <button mat-mini-fab class="float-button" (click)="openDialog()">
+      <mat-icon>add</mat-icon>
+    </button>
   </div>
 </div>
+-->
