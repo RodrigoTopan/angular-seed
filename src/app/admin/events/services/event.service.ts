@@ -19,7 +19,7 @@ export class EventService {
     return this.http.get(env.baseApiUrl + this.PATH);
   }
 
-  save(event: Event, file: File) {
+  save(event: Event, file: File): Observable<any> {
     //Em casos que se queira enviar arquivos junto com a requisição
     //utilizar form-data
     const uploadData = new FormData();
@@ -29,27 +29,10 @@ export class EventService {
     uploadData.append('end_date', this.dateFormat(event.end_date));
     //uploadData.append('file',file, file.name);
 
-    this.http
-      .post(env.baseApiUrl + this.PATH, uploadData, {
-        reportProgress: true,
-        observe: 'events'
-      })
-      .subscribe((event: any) => {
-        if (event.type == HttpEventType.Response) {
-          event.body.map(e => {
-            this.event = new Event(
-              e.name,
-              e.description,
-              e.beginning_date,
-              e.end_date
-              //e.photo
-            );
-          });
-          console.log('ROTA');
-          console.log('NOVO EVENTO', this.event);
-        }
-      });
-    return this.event;
+    return this.http.post(env.baseApiUrl + this.PATH, uploadData, {
+      reportProgress: true,
+      observe: 'events'
+    });
   }
 
   dateFormat(dateToFormat) {
@@ -60,4 +43,6 @@ export class EventService {
     var formatted = year + '-' + month + '-' + day;
     return formatted;
   }
+
+  //criar outro método para emitir evento que vai receber a resposta da api
 }

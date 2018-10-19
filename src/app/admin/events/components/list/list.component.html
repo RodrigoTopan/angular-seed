@@ -44,6 +44,22 @@
                     {{ event.end_date }}
                   </mat-cell>
                 </ng-container>
+                <ng-container matColumnDef="actions">
+                  <mat-header-cell *matHeaderCellDef>
+                    Ações
+                  </mat-header-cell>
+                  <mat-cell *matCellDef="let event">
+                    <button class="btn btn-info btn-sm">
+                      <mat-icon>details</mat-icon>
+                    </button>
+                    <button class="btn btn-warning btn-sm">
+                      <mat-icon>editar</mat-icon>
+                    </button>
+                    <button class="btn btn-danger btn-sm">
+                      <mat-icon>delete</mat-icon>
+                    </button>
+                  </mat-cell>
+                </ng-container>
               </mat-table>
               <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 15, 25]">
               </mat-paginator>

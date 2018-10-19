@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataSource } from '@angular/cdk/collections';
 import { EventService } from '../../services/event.service';
 import { Event } from '../../models/event.model';
+import { HttpEventType } from '@angular/common/http';
 import { EventDialogComponent } from '../event-dialog/event-dialog.component';
 import {
   MatTableDataSource,
@@ -22,7 +23,13 @@ import { Observable } from 'rxjs';
 })
 export class ListComponent implements OnInit {
   dataSource: MatTableDataSource<Event>;
-  colunas: string[] = ['name', 'description', 'beginning_date', 'end_date'];
+  colunas: string[] = [
+    'name',
+    'description',
+    'beginning_date',
+    'end_date',
+    'actions'
+  ];
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -36,17 +43,18 @@ export class ListComponent implements OnInit {
 
   ngOnInit() {
     this.list();
+    //criar um subscribe do método que eu criei event emmiter no service, dar um push no array events
   }
 
   list() {
     {
       this.eventService.list().subscribe(
         data => {
-          const events = data as Event[];
-          this.dataSource = new MatTableDataSource<Event>(events);
+          this.events = data as Event[];
+          this.dataSource = new MatTableDataSource<Event>(this.events);
           this.dataSource.sort = this.sort;
           this.dataSource.paginator = this.paginator;
-          console.log(events);
+          console.log(this.events);
         },
         err => {
           const msg: string = 'Erro obtendo eventos.';
@@ -63,9 +71,31 @@ export class ListComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         console.log('CADASTRO EVENTO', result);
-        this.eventService.save(result.event, result.arquivo);
-        this.events = [];
-        this.list();
+        this.eventService
+          .save(result.event, result.arquivo)
+          .subscribe((event: any) => {
+            if (event.type == HttpEventType.Response) {
+              const e = event.body;
+              const createdEvent = {
+                name: e.name,
+                description: e.description,
+                beginning_date: e.beginning_date,
+                end_date: e.end_date
+                //e.photo
+              };
+              console.log('LISTA DE EVENTOS', this.events);
+              console.log('NOVO EVENTO', createdEvent);
+              this.events.push(createdEvent);
+              console.log('ROTA', this.events);
+              this.list();
+            }
+          });
+        const msg: string = 'Evento cadastrado com sucesso.';
+        this.snackBar.open(msg, 'Sucesso', { duration: 5000 });
+        // PERGUNTAR
+        // this.events = [];
+        // this.list();
+        //location.reload();
       }
     });
   }
