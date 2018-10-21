@@ -8,10 +8,20 @@ interface RouteInfo {
   class: string;
 }
 export const ROUTES: RouteInfo[] = [
-  { path: '/account', title: 'Conta', icon: 'account-circle', class: '' },
+  { path: '/account', title: 'Conta', icon: 'account_box', class: '' },
   { path: 'dashboard', title: 'Dashboard', icon: 'dashboard', class: '' },
   { path: 'events', title: 'Eventos', icon: 'event', class: '' },
-  { path: 'activities', title: 'Atividades', icon: 'list', class: '' }
+  { path: 'activities', title: 'Atividades', icon: 'list', class: '' },
+  { path: 'speakers', title: 'Palestrantes', icon: 'mic', class: '' },
+  { path: 'locations', title: 'Locais', icon: 'location_on', class: '' },
+  { path: 'rooms', title: 'Salas', icon: 'meeting_room', class: '' },
+  { path: 'feed', title: 'Feed', icon: 'list', class: '' },
+  {
+    path: 'subscriptions',
+    title: 'Inscrições',
+    icon: 'subscriptions',
+    class: ''
+  }
 ];
 
 @Component({

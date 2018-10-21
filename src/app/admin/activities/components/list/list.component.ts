@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataSource } from '@angular/cdk/collections';
 import { ActivityService } from '../../services/activity.service';
 import { Activity } from '../../models/activity.model';
+
 import {
   MatTableDataSource,
   MatSnackBar,
@@ -18,6 +19,24 @@ import { Observable } from 'rxjs';
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
+  dataSource: MatTableDataSource<Activity>;
+
+  colunas: string[] = [
+    'name',
+    'description',
+    'beginning_date',
+    'minimum_quorum',
+    'maximum_capacity',
+    'schedule',
+    'event',
+    'location',
+    'room',
+    'end_date',
+    'id'
+  ];
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
   private activities: Activity[] = [];
 
   constructor(
@@ -26,25 +45,30 @@ export class ListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    /*this.activities.push(
+      new Activity(
+        'Teste atividade',
+        'teste descrição',
+        '2018-01-01',
+        '10',
+        '50',
+        '1',
+        '1',
+        '1',
+        '1'
+      )
+    );*/
     this.activityService.list().subscribe(
-      (activities: any[]) => {
-        console.log('eventos', activities[0]);
-        this.activities.push(
-          new Activity(
-            activities[0].name,
-            activities[0].description,
-            activities[0].beginning_date,
-            activities[0].minimum_quorum,
-            activities[0].maximum_capacity,
-            activities[0].schedule_id,
-            activities[0].event_id,
-            activities[0].location_id,
-            activities[0].room_id
-          )
-        );
+      data => {
+        this.activities = data as Activity[];
+        console.log('ACTIVITIESSSSSSSS');
+        this.dataSource = new MatTableDataSource<Activity>(this.activities);
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
+        console.log(this.activities);
       },
       err => {
-        const msg: string = 'Erro obtendo atividades.';
+        const msg: string = 'Erro obtendo eventos.';
         this.snackBar.open(msg, 'Erro', { duration: 5000 });
       }
     );

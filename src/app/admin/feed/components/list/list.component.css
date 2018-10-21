@@ -1,0 +1,10 @@
+.float-button {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  background-color: #ff0028;
+}
+
+.edit-button {
+  background-color: #f7e456;
+}

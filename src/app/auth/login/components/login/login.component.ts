@@ -9,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
+import { User } from '../../models/user.model';
 
 //Import model
 import { Login } from '../../models/login.model';
@@ -22,7 +23,7 @@ import { LoginService } from '../../services/login.service';
 })
 export class LoginComponent implements OnInit {
   form: FormGroup;
-
+  private user: User;
   constructor(
     private fb: FormBuilder, //Importando os recursos para o componente
     private snackbar: MatSnackBar,
@@ -64,17 +65,23 @@ export class LoginComponent implements OnInit {
       //Caso sucesso
       data => {
         console.log(JSON.stringify(data));
-        localStorage['token'] = data['data']['token'];
-        const userData = JSON.parse(
-          //O atob decodifica em base64 para decodificarmos o JWT
-          atob(data['data']['token'].split('.')[1])
-        );
+        // localStorage['token'] =
+        this.user = data['data'];
+        console.log('NOME DO USUÁRIO', data['data']['user']['name']);
+        console.log('USUARIO', this.user);
+        localStorage.setItem('token', data['data']['token']);
+        localStorage.setItem('user', JSON.stringify(this.user));
+        console.log('STORAGE', localStorage);
+        const userData = JSON.parse(localStorage['user']);
         console.log('Dados do usuario', JSON.stringify(userData));
-        if (userData['role'] == 'admin') {
+        // if (userData['profile'] == '1') {
+        if (userData['user']['id']) {
+          localStorage['profile'] = 'admin';
           alert('Deve redirecionar para a página de admin');
-          //this.router.navigate(['/admin']);
-        } else if (userData['role'] == 'user') {
-          alert('Deve redirecionar para a página de funcionários seeduc');
+          this.router.navigate(['/admin/dashboard']);
+        } else if (userData['profile'] == '0') {
+          localStorage['profile'] = 'public';
+          alert('Deve redirecionar para a página de usuários públicos');
           //this.router.navigate(['/user']);
         }
       },

@@ -4,7 +4,7 @@
       <div class="col-md-12">
         <div class="card card-plain">
           <div class="card-header card-header-danger">
-            <h4 class="card-title mt-0"> Minhas Atividades </h4>
+            <h4 class="card-title mt-0"> Atividades </h4>
             <p class="card-category"> Lista de Atividades</p>
           </div>
           <div class="card-body">
@@ -22,11 +22,16 @@
                   <th>Sala</th>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let e of events">
-                    <td>{{ e.name }}</td>
-                    <td>{{ e.description }}</td>
-                    <td>{{ e.beginning_date }}</td>
-                    <td>{{ e.end_date }}</td>
+                  <tr *ngFor="let a of activities">
+                    <td>{{ a.name}}</td>
+                    <td>{{a.description}}</td>
+                    <td>{{a.beginning_date}}</td>
+                    <td>{{a.manimum_quorum}}</td>
+                    <td>{{a.maximum_capacity}}</td>
+                    <td>{{a.schedule_id}}</td>
+                    <td>{{a.event_id}}</td>
+                    <td>{{a.location_id}}</td>
+                    <td>{{a.room_id}}</td>
                   </tr>
                 </tbody>
               </table>

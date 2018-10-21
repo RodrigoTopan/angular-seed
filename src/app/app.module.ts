@@ -38,12 +38,16 @@ import { MaskDirective } from './shared/directive/mask.directive';
 //Pacote do Público
 import { EventDialogComponent as AdminEventDialogComponent } from './admin/events/components/event-dialog/event-dialog.component';
 
+import { InterceptorModule } from '../app/auth/login/interceptor.module';
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [AppComponent, AdminEventDialogComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    HttpClientModule,
     ReactiveFormsModule,
     FlexLayoutModule,
     MatButtonModule,
@@ -69,6 +73,7 @@ import { EventDialogComponent as AdminEventDialogComponent } from './admin/event
     LoginRoutingModule,
     RegistryModule,
     AdminEventModule,
+    InterceptorModule,
     AdminActivityModule,
     DashboardModule,
     AppRoutingModule //It must be the last imported module
