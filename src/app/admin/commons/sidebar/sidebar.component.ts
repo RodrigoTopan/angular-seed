@@ -8,10 +8,10 @@ interface RouteInfo {
   class: string;
 }
 export const ROUTES: RouteInfo[] = [
-  { path: '/account', title: 'Conta', icon: 'account_box', class: '' },
+  { path: 'account', title: 'Conta', icon: 'account_box', class: '' },
   { path: 'dashboard', title: 'Dashboard', icon: 'dashboard', class: '' },
   { path: 'events', title: 'Eventos', icon: 'event', class: '' },
-  { path: 'activities', title: 'Atividades', icon: 'list', class: '' },
+  //{ path: 'activities', title: 'Atividades', icon: 'list', class: '' },
   { path: 'speakers', title: 'Palestrantes', icon: 'mic', class: '' },
   { path: 'locations', title: 'Locais', icon: 'location_on', class: '' },
   { path: 'rooms', title: 'Salas', icon: 'meeting_room', class: '' },
@@ -43,4 +43,11 @@ export class SidebarComponent implements OnInit {
     }
     return true;
   }*/
+
+  logout() {
+    confirm('Você deseja mesmo sair ?');
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    window.location.href = 'http://localhost:4200/login';
+  }
 }

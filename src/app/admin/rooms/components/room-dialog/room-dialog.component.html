@@ -1,0 +1,53 @@
+<div fxLayout="column" fxLayoutAlign="space-around left">
+  <div fxLayout="row" fxLayoutAlign="space-between">
+    <mat-form-field fxFlex="100">
+      <input matInput placeholder="Nome" [(ngModel)]="dados.room.name">
+      <mat-hint>Digite o nome da sala</mat-hint>
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="space-between">
+    <mat-form-field fxFlex="100">
+      <textarea matInput placeholder="Descrição" [(ngModel)]="dados.room.description"></textarea>
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="space-between">
+    <mat-form-field fxFlex="20">
+      <textarea matInput placeholder="Capacidade" [(ngModel)]="dados.room.capacity"></textarea>
+    </mat-form-field>
+    <mat-form-field fxFlex="20">
+      <textarea matInput placeholder="Vídeo projetor disponível? " [(ngModel)]="dados.room.available_video_projector"></textarea>
+    </mat-form-field>
+    <mat-form-field fxFlex="20">
+      <textarea matInput placeholder="AV disponível ?" [(ngModel)]="dados.room.available_AC"></textarea>
+    </mat-form-field>
+    <mat-form-field fxFlex="20">
+      <textarea matInput placeholder="Assentos disponíveis?" [(ngModel)]="dados.room.available_seats"></textarea>
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="space-between">
+    <mat-form-field fxFlex="40">
+      <textarea matInput placeholder="Tipo de assentos" [(ngModel)]="dados.room.capacity"></textarea>
+    </mat-form-field>
+    <mat-form-field fxFlex="40">
+      <textarea matInput placeholder="Local" [(ngModel)]="dados.room.location_id"></textarea>
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="space-between">
+    <!--No momento que o usuário selecionar um arquivo disparar change-->
+    <input type="file" style="display:none;" (change)="changefile($event)" #fileinput />
+    <button mat-button color="primary" (click)="fileinput.click()">
+      <mat-icon>add_a_photo</mat-icon> Adicionar Foto
+    </button>
+    <!--<p #ngIf="nomearquivo !=''">
+      <strong>Arquivo: {{ nomearquivo }}</strong>
+    </p>-->
+  </div>
+
+
+  <br><br>
+
+  <div style="text-align: center">
+    <button mat-button color="primary" (click)="save()">OK</button>
+    <button mat-button color="warning" (click)="cancel()">Cancelar</button>
+  </div>
+</div>

@@ -1,0 +1,77 @@
+<div fxLayout="column" fxLayoutAlign="space-around left">
+  <div fxLayout="row" fxLayoutAlign="space-between">
+    <mat-form-field fxFlex="100">
+      <input matInput placeholder="Nome do local" [(ngModel)]="dados.location.name">
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="space-between">
+    <mat-form-field fxFlex="80">
+      <input matInput placeholder="Endereço" [(ngModel)]="dados.location.full_adress">
+    </mat-form-field>
+    <mat-form-field fxFlex="20">
+      <input matInput placeholder="Nº Endereço" [(ngModel)]="dados.location.adress_number">
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="space-between">
+    <mat-form-field fxFlex="40">
+      <input matInput placeholder="Complemento" [(ngModel)]="dados.location.adress_complement">
+    </mat-form-field>
+    <mat-form-field fxFlex="40">
+      <input matInput placeholder="CEP" [(ngModel)]="dados.location.postal_code">
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="space-between">
+    <mat-form-field fxFlex="40">
+      <input matInput placeholder="Cidade" [(ngModel)]="dados.location.city">
+    </mat-form-field>
+    <mat-form-field fxFlex="20">
+      <input matInput placeholder="Estado" [(ngModel)]="dados.location.state">
+    </mat-form-field>
+    <mat-form-field fxFlex="20">
+      <input matInput placeholder="Distrito" [(ngModel)]="dados.location.district">
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="space-between">
+    <mat-form-field fxFlex="100">
+      <input matInput placeholder="Ponto de referência" [(ngModel)]="dados.location.reference_point">
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="space-between">
+    <mat-form-field fxFlex="30">
+      <input matInput placeholder="Dias de trabalho" [(ngModel)]="dados.location.work_days">
+    </mat-form-field>
+    <mat-form-field fxFlex="30">
+      <input matInput placeholder="Hora de abrir" [(ngModel)]="dados.location.open_hours">
+    </mat-form-field>
+    <mat-form-field fxFlex="30">
+      <input matInput placeholder="Hora de fechar" [(ngModel)]="dados.location.close_hour">
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="space-between">
+    <mat-form-field fxFlex="100">
+      <input matInput placeholder="Nome do responsável pelo local" [(ngModel)]="dados.location.manager_name">
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="space-between">
+    <mat-form-field fxFlex="20">
+      <input matInput placeholder="Tel/Celular" [(ngModel)]="dados.location.manager_phone_number">
+    </mat-form-field>
+    <mat-form-field fxFlex="70">
+      <input matInput placeholder="Email" [(ngModel)]="dados.location.manager_email">
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="space-between">
+    <!--No momento que o usuário selecionar um arquivo disparar change-->
+    <input type="file" style="display:none;" (change)="changefile($event)" #fileinput />
+    <button mat-button color="primary" (click)="fileinput.click()">
+      <mat-icon>add_a_photo</mat-icon> Adicionar Foto
+    </button>
+    <!--<p #ngIf="nomearquivo !=''">
+      <strong>Arquivo: {{ nomearquivo }}</strong>
+    </p>-->
+  </div>
+  <div style="text-align: center">
+    <button mat-button color="primary" (click)="save()">OK</button>
+    <button mat-button color="warning" (click)="cancel()">Cancelar</button>
+  </div>
+</div>

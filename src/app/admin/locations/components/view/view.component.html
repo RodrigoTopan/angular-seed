@@ -1,0 +1,96 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="card card-plain">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title mt-0"> Local: {{location.name}}</h4>
+          </div>
+          <mat-card fxFlex class="card">
+            <mat-card-header>
+              <div mat-card-avatar></div>
+              <mat-card-title>{{location.name}}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <div fxLayout="column" fxLayoutAlign="space-around left">
+                <div fxLayout="row" fxLayoutAlign="space-between">
+                  <div fxFlex="20">
+                    <b>ID:</b> {{location.id}}
+                  </div>
+                  <div fxFlex="20">
+                    <b>DATA:</b> {{location.created_at | date: "dd/mm/yyyy"}}
+                  </div>
+                  <div fxFlex="80">
+                    <b>LOCAL:</b> {{location.name}}
+                  </div>
+                </div>
+                <hr>
+                <div fxLayout="row" fxLayoutAlign="space-between">
+                  <div fxFlex="20">
+                    Nº ENDEREÇO: {{location.adress_number}}
+                  </div>
+                  <div fxFlex="80">
+                    ENDEREÇO: {{location.full_adress}}
+                  </div>
+                </div>
+                <hr>
+                <div fxLayout="row" fxLayoutAlign="space-between">
+                  <div fxFlex="20">
+                    CIDADE: {{location.city}}
+                  </div>
+                  <div fxFlex="20">
+                    ESTADO: {{location.state}}
+                  </div>
+                  <div fxFlex="30">
+                    COMPLEMENTO: {{location.adress_complement}}
+                  </div>
+                  <div fxFlex="30">
+                    DISTRITO: {{location.district}}
+                  </div>
+                </div>
+                <hr>
+                <div fxLayout="row" fxLayoutAlign="space-between">
+                  <div fxFlex="30">
+                    CEP: {{location.postal_code}}
+                  </div>
+                  <div fxFlex="50">
+                    PONTO DE REFERÊNCIA: {{location.reference_point}}
+                  </div>
+                </div>
+                <hr>
+                <div fxLayout="row" fxLayoutAlign="space-between">
+                  <div fxFlex="30">
+                    DIAS DE FUNCIONAMENTO: {{location.work_days}}
+                  </div>
+                  <div fxFlex="30"> HORA DE ABERTURA: {{location.open_hours}}</div>
+                  <div fxFlex="30">
+                    HORA DE FECHAMENTO: {{location.close_hour}}
+                  </div>
+                </div>
+                <hr>
+                <div fxLayout="row" fxLayoutAlign="space-between">
+                  <div fxFlex="30">
+                    NOME DO RESPONSÁVEL: {{location.manager_name}}
+                  </div>
+                  <div fxFlex="30">
+                    Nº CONTATO: {{location.manager_phone_number}}
+                  </div>
+                  <div fxFlex="30">
+                    EMAIL: {{location.manager_email}}
+                  </div>
+                </div>
+                <hr>
+                <div fxLayout="row" fxLayoutAlign="space-between">
+                  <div fxFlex="30">
+                    EDITADO EM: {{location.updated_at}}
+                  </div>
+                  <div fxFlex="30">
+                    CRIADO EM: {{location.created_at}}
+                  </div>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+          <a [routerLink]="['../']" mat-mini-fab class="float-button">
+            <mat-icon>undo</mat-icon>
+          </a>

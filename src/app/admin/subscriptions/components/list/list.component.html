@@ -4,12 +4,12 @@
       <div class="col-md-12">
         <div class="card card-plain">
           <div class="card-header card-header-danger">
-            <h4 class="card-title mt-0"> Eventos </h4>
-            <p class="card-category"> Lista de Eventos</p>
+            <h4 class="card-title mt-0"> Inscrições </h4>
+            <p class="card-category"> Lista de Inscrições</p>
           </div>
           <div class="card-body">
             <mat-form-field>
-              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Pesquisar">
             </mat-form-field>
             <div class="table-responsive">
               <mat-table class="table table-hover" [dataSource]="dataSource" matSort>
@@ -66,8 +66,5 @@
               </mat-table>
               <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 15, 25]">
               </mat-paginator>
-              <button mat-mini-fab class="float-button" (click)="openDialog()">
-                <mat-icon>add</mat-icon>
-              </button>
             </div>
           </div>

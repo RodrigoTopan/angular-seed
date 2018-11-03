@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataSource } from '@angular/cdk/collections';
-import { EventService } from '../../services/event.service';
-import { Event } from '../../models/event.model';
+import { LocationService } from '../../services/location.service';
+import { Location } from '../../models/location.model';
 import {
   HttpClientModule,
   HttpClient,
@@ -9,7 +9,7 @@ import {
   HttpEventType
 } from '@angular/common/http';
 
-import { EventDialogComponent } from '../event-dialog/event-dialog.component';
+import { LocationDialogComponent } from '../location-dialog/location-dialog.component';
 import {
   MatTableDataSource,
   MatSnackBar,
@@ -28,22 +28,23 @@ import { Observable } from 'rxjs';
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
-  dataSource: MatTableDataSource<Event>;
+  dataSource: MatTableDataSource<Location>;
   colunas: string[] = [
     'name',
-    'description',
-    'beginning_date',
-    'end_date',
+    'full_adress',
+    'adress_number',
+    'city',
+    'state',
     'id'
   ];
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  private events: Event[] = [];
+  private locations: Location[] = [];
   private details: any[] = [];
 
   constructor(
-    private eventService: EventService,
+    private locationService: LocationService,
     public dialog: MatDialog,
     private snackBar: MatSnackBar
   ) {}
@@ -55,78 +56,76 @@ export class ListComponent implements OnInit {
 
   list() {
     {
-      this.eventService.list().subscribe(
+      this.locationService.list().subscribe(
         data => {
-          this.events = data as Event[];
-          this.dataSource = new MatTableDataSource<Event>(this.events);
+          this.locations = data as Location[];
+          this.dataSource = new MatTableDataSource<Location>(this.locations);
           this.dataSource.sort = this.sort;
           this.dataSource.paginator = this.paginator;
-          console.log(this.events);
+          console.log(this.locations);
         },
         err => {
-          const msg: string = 'Erro obtendo eventos.';
+          const msg: string = 'Erro obtendo locais.';
           this.snackBar.open(msg, 'Erro', { duration: 5000 });
         }
       );
-      console.log(this.events);
+      console.log(this.locations);
     }
   }
   openDialog() {
-    const dialogRef = this.dialog.open(EventDialogComponent, {
+    const dialogRef = this.dialog.open(LocationDialogComponent, {
       width: '600px'
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log('CADASTRO EVENTO', result);
-        this.eventService
-          .save(result.event, result.arquivo)
-          .subscribe((event: any) => {
-            if (event.type == HttpEventType.Response) {
-              const e = event.body;
-              const createdEvent = {
-                name: e.name,
-                description: e.description,
-                beginning_date: e.beginning_date,
-                end_date: e.end_date
+        this.locationService
+          .save(result.location, result.arquivo)
+          .subscribe((location: any) => {
+            if (location.type == HttpEventType.Response) {
+              const l = location.body;
+              const createdLocation = {
+                name: l.name,
+                postal_code: l.postal_code,
+                adress_number: l.adress_number,
+                full_adress: l.full_adress,
+                district: l.district,
+                city: l.city,
+                state: l.state,
+                reference_point: l.reference_point,
+                work_days: l.work_days,
+                open_hours: l.open_hours,
+                close_hour: l.close_hour,
+                manager_name: l.manager_name,
+                manager_phone_number: l.manager_phone_number,
+                manager_email: l.manager_email,
+                adress_complement: l.adress_complement
                 //e.photo
               };
-              console.log('LISTA DE EVENTOS', this.events);
-              console.log('NOVO EVENTO', createdEvent);
-              this.events.push(createdEvent);
-              console.log('ROTA', this.events);
+              this.locations.push(createdLocation);
               this.list();
             }
           });
-        const msg: string = 'Evento cadastrado com sucesso.';
+        const msg: string = 'Local cadastrado com sucesso.';
         this.snackBar.open(msg, 'Sucesso', { duration: 5000 });
-        // PERGUNTAR
-        // this.events = [];
-        // this.list();
-        //location.reload();
       }
     });
   }
 
   delete(id) {
-    console.log('DELEÇÃO DO EVENTO', id);
-    this.eventService.delete(id).subscribe((event: any) => {
-      console.log('EVENTO TYPE', event);
-      console.log('ATUALIZADO', this.events);
-      const e = event;
-      const deletedEvent = {
-        id: e.id,
-        name: e.name,
-        description: e.description,
-        beginning_date: e.beginning_date,
-        end_date: e.end_date
+    this.locationService.delete(id).subscribe((location: any) => {
+      const l = location;
+      const deletedLocation = {
+        id: l.id,
+        name: l.name,
+        description: l.description,
+        beginning_date: l.beginning_date,
+        end_date: l.end_date
         //e.photo
       };
-      console.log('LISTA DE EVENTOS', this.events);
-      console.log('DELETADO EVENTO', deletedEvent);
 
-      this.events = this.events.filter(item => {
-        console.log('TRUE OR FALSE ?', item.id != deletedEvent.id);
-        return item.id != deletedEvent.id;
+      this.locations = this.locations.filter(item => {
+        console.log('TRUE OR FALSE ?', item.id != deletedLocation.id);
+        return item.id != deletedLocation.id;
       });
       this.list();
     });

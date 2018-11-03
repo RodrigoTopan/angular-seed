@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataSource } from '@angular/cdk/collections';
-import { EventService } from '../../services/event.service';
-import { Event } from '../../models/event.model';
+import { SubscriptionService } from '../../services/subscription.service';
+import { Subscription } from '../../models/subscription.model';
 import {
   HttpClientModule,
   HttpClient,
@@ -9,7 +9,7 @@ import {
   HttpEventType
 } from '@angular/common/http';
 
-import { EventDialogComponent } from '../event-dialog/event-dialog.component';
+import { SubscriptionDialogComponent } from '../subscription-dialog/subscription-dialog.component';
 import {
   MatTableDataSource,
   MatSnackBar,
@@ -28,7 +28,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
-  dataSource: MatTableDataSource<Event>;
+  dataSource: MatTableDataSource<Subscription>;
   colunas: string[] = [
     'name',
     'description',
@@ -39,11 +39,11 @@ export class ListComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  private events: Event[] = [];
+  private subscriptions: Subscription[] = [];
   private details: any[] = [];
 
   constructor(
-    private eventService: EventService,
+    private subscriptionService: SubscriptionService,
     public dialog: MatDialog,
     private snackBar: MatSnackBar
   ) {}
@@ -55,78 +55,68 @@ export class ListComponent implements OnInit {
 
   list() {
     {
-      this.eventService.list().subscribe(
+      this.subscriptionService.list().subscribe(
         data => {
-          this.events = data as Event[];
-          this.dataSource = new MatTableDataSource<Event>(this.events);
+          this.subscriptions = data as Subscription[];
+          this.dataSource = new MatTableDataSource<Subscription>(
+            this.subscriptions
+          );
           this.dataSource.sort = this.sort;
           this.dataSource.paginator = this.paginator;
-          console.log(this.events);
+          console.log(this.subscriptions);
         },
         err => {
-          const msg: string = 'Erro obtendo eventos.';
+          const msg: string = 'Erro obtendo inscrições.';
           this.snackBar.open(msg, 'Erro', { duration: 5000 });
         }
       );
-      console.log(this.events);
+      console.log(this.subscriptions);
     }
   }
   openDialog() {
-    const dialogRef = this.dialog.open(EventDialogComponent, {
+    const dialogRef = this.dialog.open(SubscriptionDialogComponent, {
       width: '600px'
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log('CADASTRO EVENTO', result);
-        this.eventService
+        this.subscriptionService
           .save(result.event, result.arquivo)
-          .subscribe((event: any) => {
-            if (event.type == HttpEventType.Response) {
-              const e = event.body;
-              const createdEvent = {
+          .subscribe((subscription: any) => {
+            if (subscription.type == HttpEventType.Response) {
+              const e = subscription.body;
+              const createdSubscription = {
                 name: e.name,
                 description: e.description,
                 beginning_date: e.beginning_date,
                 end_date: e.end_date
                 //e.photo
               };
-              console.log('LISTA DE EVENTOS', this.events);
-              console.log('NOVO EVENTO', createdEvent);
-              this.events.push(createdEvent);
-              console.log('ROTA', this.events);
+              this.subscriptions.push(createdSubscription);
               this.list();
             }
           });
-        const msg: string = 'Evento cadastrado com sucesso.';
+        const msg: string = 'Inscrição realizada com sucesso.';
         this.snackBar.open(msg, 'Sucesso', { duration: 5000 });
-        // PERGUNTAR
-        // this.events = [];
-        // this.list();
-        //location.reload();
       }
     });
   }
 
   delete(id) {
-    console.log('DELEÇÃO DO EVENTO', id);
-    this.eventService.delete(id).subscribe((event: any) => {
-      console.log('EVENTO TYPE', event);
-      console.log('ATUALIZADO', this.events);
-      const e = event;
-      const deletedEvent = {
-        id: e.id,
-        name: e.name,
-        description: e.description,
-        beginning_date: e.beginning_date,
-        end_date: e.end_date
+    this.subscriptionService.delete(id).subscribe((subscription: any) => {
+      console.log('EVENTO TYPE', subscription);
+      console.log('ATUALIZADO', this.subscriptions);
+      const s = subscription;
+      const deletedSubscription = {
+        id: s.id,
+        name: s.name,
+        description: s.description,
+        beginning_date: s.beginning_date,
+        end_date: s.end_date
         //e.photo
       };
-      console.log('LISTA DE EVENTOS', this.events);
-      console.log('DELETADO EVENTO', deletedEvent);
-
-      this.events = this.events.filter(item => {
-        console.log('TRUE OR FALSE ?', item.id != deletedEvent.id);
-        return item.id != deletedEvent.id;
+      this.subscriptions = this.subscriptions.filter(item => {
+        console.log('TRUE OR FALSE ?', item.id != deletedSubscription.id);
+        return item.id != deletedSubscription.id;
       });
       this.list();
     });

@@ -4,12 +4,12 @@
       <div class="col-md-12">
         <div class="card card-plain">
           <div class="card-header card-header-danger">
-            <h4 class="card-title mt-0"> Eventos </h4>
-            <p class="card-category"> Lista de Eventos</p>
+            <h4 class="card-title mt-0"> Salas </h4>
+            <p class="card-category"> Lista de Salas</p>
           </div>
           <div class="card-body">
             <mat-form-field>
-              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Pesquisar">
             </mat-form-field>
             <div class="table-responsive">
               <mat-table class="table table-hover" [dataSource]="dataSource" matSort>
@@ -19,14 +19,14 @@
                   <mat-header-cell *matHeaderCellDef mat-sort-header>
                     Ações
                   </mat-header-cell>
-                  <mat-cell *matCellDef="let event">
-                    <a [routerLink]="['../activities', event.id]" class="btn btn-info btn-sm">
+                  <mat-cell *matCellDef="let room">
+                    <a [routerLink]="['../activities', room.id]" class="btn btn-info btn-sm">
                       <mat-icon>details</mat-icon>
                     </a>
-                    <a [routerLink]="['./edit', event.id]" class="btn btn-warning btn-sm">
+                    <a [routerLink]="['./edit', room.id]" class="btn btn-warning btn-sm">
                       <mat-icon>editar</mat-icon>
                     </a>
-                    <button class="btn btn-danger btn-sm" (click)="delete(event.id)">
+                    <button class="btn btn-danger btn-sm" (click)="delete(room.id)">
                       <mat-icon>delete</mat-icon>
                     </button>
                   </mat-cell>
@@ -35,32 +35,32 @@
                   <mat-header-cell *matHeaderCellDef mat-sort-header>
                     Nome
                   </mat-header-cell>
-                  <mat-cell *matCellDef="let event">
-                    {{ event.name }}
+                  <mat-cell *matCellDef="let room">
+                    {{ room.name }}
                   </mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="description">
                   <mat-header-cell *matHeaderCellDef mat-sort-header>
                     Descrição
                   </mat-header-cell>
-                  <mat-cell *matCellDef="let event">
-                    {{ event.description }}
+                  <mat-cell *matCellDef="let room">
+                    {{ room.description }}
                   </mat-cell>
                 </ng-container>
-                <ng-container matColumnDef="beginning_date">
-                  <mat-header-cell *matHeaderCellDef>
-                    Data Inicio
+                <ng-container matColumnDef="capacity">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    Capacidade
                   </mat-header-cell>
-                  <mat-cell *matCellDef="let event">
-                    {{ event.beginning_date }}
+                  <mat-cell *matCellDef="let room">
+                    {{ room.capacity }}
                   </mat-cell>
                 </ng-container>
-                <ng-container matColumnDef="end_date">
-                  <mat-header-cell *matHeaderCellDef>
-                    Data Fim
+                <ng-container matColumnDef="available_seats">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    Ass.Disponíveis
                   </mat-header-cell>
-                  <mat-cell *matCellDef="let event">
-                    {{ event.end_date }}
+                  <mat-cell *matCellDef="let room">
+                    {{ room.available_seats }}
                   </mat-cell>
                 </ng-container>
               </mat-table>

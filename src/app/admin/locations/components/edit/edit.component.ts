@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataSource } from '@angular/cdk/collections';
-import { EventService } from '../../services/event.service';
-import { Event } from '../../models/event.model';
+import { LocationService } from '../../services/location.service';
+import { Location } from '../../models/location.model';
 import { HttpEventType } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -20,7 +20,7 @@ import {
 interface RouteInfo {
   path: string;
 }
-export const ROUTES: RouteInfo[] = [{ path: '../events' }];
+export const ROUTES: RouteInfo[] = [{ path: '../locations' }];
 
 @Component({
   selector: 'app-edit',
@@ -29,17 +29,17 @@ export const ROUTES: RouteInfo[] = [{ path: '../events' }];
 })
 export class EditComponent implements OnInit {
   form: FormGroup;
-  private event: Event;
+  private location: Location;
   private _id: string;
 
   private data = {
-    event: new Event('', '', '', ''),
+    location: Location,
     arquivo: null
   };
 
   constructor(
     private route: Router,
-    private eventService: EventService,
+    private locationService: LocationService,
     private snackBar: MatSnackBar
   ) {}
 
@@ -52,28 +52,28 @@ export class EditComponent implements OnInit {
   }
 
   find(id) {
-    this.eventService.find(id).subscribe(
+    this.locationService.find(id).subscribe(
       data => {
-        this.event = data as Event;
-        console.log(this.event);
+        this.location = data as Location;
+        console.log(this.location);
       },
       err => {
-        const msg: string = 'Erro obtendo eventos.';
+        const msg: string = 'Erro obtendo locais.';
         this.snackBar.open(msg, 'Erro', { duration: 5000 });
       }
     );
-    console.log(this.event);
+    console.log(this.location);
   }
 
   edit() {
     {
-      this.eventService.edit(this.event).subscribe(
+      this.locationService.edit(this.location).subscribe(
         data => {
-          const msg: string = 'Evento editado com sucesso.';
+          const msg: string = 'Local editado com sucesso.';
           this.snackBar.open(msg, 'Sucesso', { duration: 5000 });
         },
         err => {
-          const msg: string = 'Erro obtendo eventos.';
+          const msg: string = 'Erro obtendo locations.';
           this.snackBar.open(msg, 'Erro', { duration: 5000 });
         }
       );

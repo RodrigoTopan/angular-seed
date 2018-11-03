@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataSource } from '@angular/cdk/collections';
-import { EventService } from '../../services/event.service';
-import { Event } from '../../models/speaker.model';
+import { SpeakerService } from '../../services/speaker.service';
+import { Speaker } from '../../models/speaker.model';
 import { HttpEventType } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -29,17 +29,17 @@ export const ROUTES: RouteInfo[] = [{ path: '../events' }];
 })
 export class EditComponent implements OnInit {
   form: FormGroup;
-  private event: Event;
+  private speaker: Speaker;
   private _id: string;
 
   private data = {
-    event: new Event('', '', '', ''),
+    speaker: new Speaker('', '', '', '', '', '', '', '', ''),
     arquivo: null
   };
 
   constructor(
     private route: Router,
-    private eventService: EventService,
+    private speakerService: SpeakerService,
     private snackBar: MatSnackBar
   ) {}
 
@@ -52,28 +52,28 @@ export class EditComponent implements OnInit {
   }
 
   find(id) {
-    this.eventService.find(id).subscribe(
+    this.speakerService.find(id).subscribe(
       data => {
-        this.event = data as Event;
-        console.log(this.event);
+        this.speaker = data as Speaker;
+        console.log('PALESTRANTE ENCONTRADO', this.speaker);
       },
       err => {
-        const msg: string = 'Erro obtendo eventos.';
+        const msg: string = 'Erro obtendo palestrantes.';
         this.snackBar.open(msg, 'Erro', { duration: 5000 });
       }
     );
-    console.log(this.event);
+    console.log(this.speaker);
   }
 
   edit() {
     {
-      this.eventService.edit(this.event).subscribe(
+      this.speakerService.edit(this.speaker).subscribe(
         data => {
-          const msg: string = 'Evento editado com sucesso.';
+          const msg: string = 'Palestrante editado com sucesso.';
           this.snackBar.open(msg, 'Sucesso', { duration: 5000 });
         },
         err => {
-          const msg: string = 'Erro obtendo eventos.';
+          const msg: string = 'Erro obtendo palestrantes.';
           this.snackBar.open(msg, 'Erro', { duration: 5000 });
         }
       );

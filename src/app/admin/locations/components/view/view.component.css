@@ -1,0 +1,17 @@
+.float-button {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  background-color: #ff0028;
+}
+
+.center {
+  width: 75%;
+  margin: 10px auto;
+}
+
+.main-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

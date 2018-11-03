@@ -11,7 +11,7 @@ export class SpeakerDialogComponent implements OnInit {
   private nomearquivo: string = '';
 
   private dados = {
-    event: new Speaker('', '', '', ''),
+    speaker: new Speaker('', '', '', ''),
     arquivo: null
   };
 
@@ -19,9 +19,9 @@ export class SpeakerDialogComponent implements OnInit {
 
   ngOnInit() {}
 
-  changefile(event) {
-    this.nomearquivo = event.target.files[0].name;
-    this.dados.arquivo = event.target.files[0];
+  changefile(speaker) {
+    this.nomearquivo = speaker.target.files[0].name;
+    this.dados.arquivo = speaker.target.files[0];
   }
 
   save() {

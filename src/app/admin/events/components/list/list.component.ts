@@ -99,10 +99,6 @@ export class ListComponent implements OnInit {
           });
         const msg: string = 'Evento cadastrado com sucesso.';
         this.snackBar.open(msg, 'Sucesso', { duration: 5000 });
-        // PERGUNTAR
-        // this.events = [];
-        // this.list();
-        //location.reload();
       }
     });
   }

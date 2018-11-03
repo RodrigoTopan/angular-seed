@@ -4,33 +4,70 @@
       <div class="col-md-12">
         <div class="card card-plain">
           <div class="card-header card-header-danger">
-            <h4 class="card-title mt-0"> Editar Evento </h4>
-            <p class="card-category"> Apresentar Nome do Evento</p>
+            <h4 class="card-title mt-0"> Editar Local </h4>
           </div>
           <mat-card class="login-panel">
             <div class="card-body">
               <div fxLayout="column" fxLayoutAlign="space-around left">
                 <div fxLayout="row" fxLayoutAlign="space-between">
                   <mat-form-field fxFlex="100">
-                    <input matInput placeholder="Nome" [(ngModel)]="event.name">
-                    <mat-hint>Digite o nome do evento</mat-hint>
-                  </mat-form-field>
-                </div>
-                <div fxLayout="row" fxLayoutAlign="space-between">
-                  <mat-form-field fxFlex="40">
-                    <input matInput placeholder="Data de inicio" [matDatepicker]="myDatepicker" [(ngModel)]="event.beginning_date">
-                    <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
-                    <mat-datepicker touchUi #myDatepicker></mat-datepicker>
-                  </mat-form-field>
-                  <mat-form-field fxFlex="40">
-                    <input matInput placeholder="Data fim" [matDatepicker]="myDatepicker1" [(ngModel)]="event.end_date">
-                    <mat-datepicker-toggle matSuffix [for]="myDatepicker1"></mat-datepicker-toggle>
-                    <mat-datepicker touchUi #myDatepicker1></mat-datepicker>
+                    <input matInput placeholder="Nome" [(ngModel)]="location.name">
                   </mat-form-field>
                 </div>
                 <div fxLayout="row" fxLayoutAlign="space-between">
                   <mat-form-field fxFlex="100">
-                    <textarea matInput placeholder="Descrição" [(ngModel)]="event.description"></textarea>
+                    <input matInput placeholder="Endereço" [(ngModel)]="location.full_adress">
+                  </mat-form-field>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="space-between">
+                  <mat-form-field fxFlex="25">
+                    <input matInput placeholder="Complemento de Endereço" [(ngModel)]="location.adress_complement">
+                  </mat-form-field>
+                  <mat-form-field fxFlex="25">
+                    <input matInput placeholder="Nº do Endereço" [(ngModel)]="location.adress_number">
+                  </mat-form-field>
+                  <mat-form-field fxFlex="25">
+                    <input matInput placeholder="CEP" [(ngModel)]="location.postal_code">
+                  </mat-form-field>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="space-between">
+                  <mat-form-field fxFlex="25">
+                    <input matInput placeholder="Distrito" [(ngModel)]="location.district">
+                  </mat-form-field>
+                  <mat-form-field fxFlex="25">
+                    <input matInput placeholder="Cidade" [(ngModel)]="location.city">
+                  </mat-form-field>
+                  <mat-form-field fxFlex="25">
+                    <input matInput placeholder="Estado" [(ngModel)]="location.state">
+                  </mat-form-field>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="space-between">
+                  <mat-form-field fxFlex="100">
+                    <input matInput placeholder="Ponto de referência" [(ngModel)]="location.reference_point">
+                  </mat-form-field>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="space-between">
+                  <mat-form-field fxFlex="25">
+                    <input matInput placeholder="Dias ativos" type="number" [(ngModel)]="location.work_days">
+                  </mat-form-field>
+                  <mat-form-field fxFlex="25">
+                    <input matInput placeholder="Hora de abertura" type="number" [(ngModel)]="location.open_hours">
+                  </mat-form-field>
+                  <mat-form-field fxFlex="25">
+                    <input matInput placeholder="Hora de fechamento" type="number" [(ngModel)]="location.close_hours">
+                  </mat-form-field>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="space-between">
+                  <mat-form-field fxFlex="100">
+                    <input matInput placeholder="Nome do responsável" [(ngModel)]="location.manager_name">
+                  </mat-form-field>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="space-between">
+                  <mat-form-field fxFlex="20">
+                    <input matInput placeholder="Nº de telefone/celular" [(ngModel)]="location.manager_phone_number">
+                  </mat-form-field>
+                  <mat-form-field fxFlex="70">
+                    <input matInput placeholder="Email" type="email" [(ngModel)]="location.manager_email">
                   </mat-form-field>
                 </div>
                 <div fxLayout="row" fxLayoutAlign="space-between">

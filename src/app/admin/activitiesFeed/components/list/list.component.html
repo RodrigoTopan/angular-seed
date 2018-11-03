@@ -1,0 +1,44 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card card-plain">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title mt-0"> Atividades </h4>
+            <p class="card-category"> Lista de Atividades</p>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead class="">
+                  <th>Nome</th>
+                  <th>Descrição</th>
+                  <th>Inicio</th>
+                  <th>Periodo</th>
+                  <th>Local</th>
+                  <th>Sala</th>
+                  <th> Inscrição </th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let a of activities">
+                    <td>{{a.name}}</td>
+                    <td>{{a.description}}</td>
+                    <td>{{a.beginning_date}}</td>
+                    <td>{{a.schedule.name}}</td>
+                    <td>{{a.location.name}}</td>
+                    <td>{{a.room.name}}</td>
+                    <td>
+                      <button class="btn btn-warning btn-sm" (click)="openDialog(a.id)">
+                        <mat-icon>subscriptions</mat-icon>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

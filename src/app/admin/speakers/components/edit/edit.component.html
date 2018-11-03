@@ -4,44 +4,54 @@
       <div class="col-md-12">
         <div class="card card-plain">
           <div class="card-header card-header-danger">
-            <h4 class="card-title mt-0"> Editar Evento </h4>
-            <p class="card-category"> Apresentar Nome do Evento</p>
+            <h4 class="card-title mt-0"> Editar Palestrante </h4>
+            <p class="card-category"> Apresentar Nome do Palestrante</p>
           </div>
           <mat-card class="login-panel">
             <div class="card-body">
               <div fxLayout="column" fxLayoutAlign="space-around left">
                 <div fxLayout="row" fxLayoutAlign="space-between">
                   <mat-form-field fxFlex="100">
-                    <input matInput placeholder="Nome" [(ngModel)]="event.name">
-                    <mat-hint>Digite o nome do evento</mat-hint>
-                  </mat-form-field>
-                </div>
-                <div fxLayout="row" fxLayoutAlign="space-between">
-                  <mat-form-field fxFlex="40">
-                    <input matInput placeholder="Data de inicio" [matDatepicker]="myDatepicker" [(ngModel)]="event.beginning_date">
-                    <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
-                    <mat-datepicker touchUi #myDatepicker></mat-datepicker>
-                  </mat-form-field>
-                  <mat-form-field fxFlex="40">
-                    <input matInput placeholder="Data fim" [matDatepicker]="myDatepicker1" [(ngModel)]="event.end_date">
-                    <mat-datepicker-toggle matSuffix [for]="myDatepicker1"></mat-datepicker-toggle>
-                    <mat-datepicker touchUi #myDatepicker1></mat-datepicker>
+                    <input matInput placeholder="Nome" [(ngModel)]="speaker.name">
+                    <mat-hint>Digite o nome do Palestrante</mat-hint>
                   </mat-form-field>
                 </div>
                 <div fxLayout="row" fxLayoutAlign="space-between">
                   <mat-form-field fxFlex="100">
-                    <textarea matInput placeholder="Descrição" [(ngModel)]="event.description"></textarea>
+                    <input matInput placeholder="Tipo" [(ngModel)]="speaker.type">
+                  </mat-form-field>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="space-between">
+                  <mat-form-field fxFlex="100">
+                    <input matInput placeholder="Descrição" [(ngModel)]="speaker.small_desc">
+                  </mat-form-field>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="space-between">
+                  <mat-form-field fxFlex="100">
+                    <input matInput placeholder="linkedin" [(ngModel)]="speaker.linkedin">
+                  </mat-form-field>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="space-between">
+                  <mat-form-field fxFlex="100">
+                    <input matInput placeholder="facebook" [(ngModel)]="speaker.facebook">
+                  </mat-form-field>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="space-between">
+                  <mat-form-field fxFlex="100">
+                    <input matInput placeholder="twitter" [(ngModel)]="speaker.twitter">
+                  </mat-form-field>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="space-between">
+                  <mat-form-field fxFlex="100">
+                    <input matInput placeholder="website" [(ngModel)]="speaker.website">
                   </mat-form-field>
                 </div>
                 <div fxLayout="row" fxLayoutAlign="space-between">
                   <!--No momento que o usuário selecionar um arquivo disparar change-->
-                  <input type="file" style="display:none;" (change)="changefile($event)" #fileinput />
+                  <input type="file" style="display:none;" (change)="changefile($speaker)" #fileinput />
                   <button mat-button color="primary" (click)="fileinput.click()">
                     <mat-icon>add_a_photo</mat-icon> Alterar Foto
                   </button>
-                  <!--<p #ngIf="nomearquivo !=''">
-                      <strong>Arquivo: {{ nomearquivo }}</strong>
-                    </p>-->
                 </div>
 
 

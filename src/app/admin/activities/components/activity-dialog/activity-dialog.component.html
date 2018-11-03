@@ -1,0 +1,62 @@
+<div fxLayout="column" fxLayoutAlign="space-around left">
+  <div fxLayout="row" fxLayoutAlign="space-between">
+    <mat-form-field fxFlex="100">
+      <input matInput placeholder="Nome" [(ngModel)]="dados.activity.name">
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="space-between">
+    <mat-form-field fxFlex="100">
+      <textarea matInput placeholder="Descrição" name="description" [(ngModel)]="dados.activity.description"></textarea>
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="space-between">
+    <mat-form-field fxFlex="40">
+      <input matInput placeholder="Quorum" name="minimum_quorum" [(ngModel)]="dados.activity.minimum_quorum">
+    </mat-form-field>
+    <mat-form-field fxFlex="40">
+      <input matInput placeholder="Capacidade" name="maximum_capacity" [(ngModel)]="dados.activity.maximum_capacity">
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="space-between">
+    <mat-form-field fxFlex="100">
+      <input matInput placeholder="Período" name="schedule_id" [(ngModel)]="dados.activity.schedule_id">
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="space-between">
+    <mat-form-field fxFlex="100">
+      <input matInput placeholder="Evento" name="event_id" [(ngModel)]="dados.activity.event_id">
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="space-between">
+    <mat-form-field fxFlex="100">
+      <input matInput placeholder="Local" name="location_id" [(ngModel)]="dados.activity.location_id">
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="space-between">
+    <mat-form-field fxFlex="100">
+      <input matInput placeholder="Sala" name="room_id" [(ngModel)]="dados.activity.room_id">
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="space-between">
+    <mat-form-field fxFlex="100">
+      <input matInput placeholder="Data de inicio" [matDatepicker]="myDatepicker" [(ngModel)]="dados.activity.beginning_date">
+      <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
+      <mat-datepicker touchUi #myDatepicker></mat-datepicker>
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="space-between">
+    <!--No momento que o usuário selecionar um arquivo disparar change-->
+    <input type="file" style="display:none;" (change)="changefile($event)" #fileinput />
+    <button mat-button color="primary" (click)="fileinput.click()">
+      <mat-icon>add_a_photo</mat-icon> Adicionar Foto
+    </button>
+    <!--<p #ngIf="nomearquivo !=''">
+      <strong>Arquivo: {{ nomearquivo }}</strong>
+    </p>-->
+  </div>
+  <br><br>
+  <div style="text-align: center">
+    <button mat-button color="primary" (click)="save()">OK</button>
+    <button mat-button color="warning" (click)="cancel()">Cancelar</button>
+  </div>
+</div>

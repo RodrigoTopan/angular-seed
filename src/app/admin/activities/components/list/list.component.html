@@ -17,21 +17,19 @@
                   <th>Quorum</th>
                   <th>Capacidade</th>
                   <th>Periodo</th>
-                  <th>Evento</th>
                   <th>Local</th>
                   <th>Sala</th>
                 </thead>
                 <tbody>
                   <tr *ngFor="let a of activities">
-                    <td>{{ a.name}}</td>
+                    <td>{{a.name}}</td>
                     <td>{{a.description}}</td>
                     <td>{{a.beginning_date}}</td>
-                    <td>{{a.manimum_quorum}}</td>
+                    <td>{{a.minimum_quorum}}</td>
                     <td>{{a.maximum_capacity}}</td>
-                    <td>{{a.schedule_id}}</td>
-                    <td>{{a.event_id}}</td>
-                    <td>{{a.location_id}}</td>
-                    <td>{{a.room_id}}</td>
+                    <td>{{a.schedule.name}}</td>
+                    <td>{{a.location.name}}</td>
+                    <td>{{a.room.name}}</td>
                   </tr>
                 </tbody>
               </table>
@@ -41,4 +39,7 @@
       </div>
     </div>
   </div>
+  <button mat-mini-fab class="float-button" (click)="openDialog()">
+    <mat-icon>add</mat-icon>
+  </button>
 </div>
