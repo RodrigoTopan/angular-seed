@@ -86,7 +86,7 @@ export class LoginComponent implements OnInit {
         }
       },
       err => {
-        console.log('DEU RUIM NO LOGIN');
+        console.log('DEU RUIM NO LOGIN', err);
         let msg: string =
           'Tente novamente em instantes ou nos contate em : (13) 99703-5994';
         if ((err['status'] = 401)) {

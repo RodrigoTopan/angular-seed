@@ -1,0 +1,48 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card card-plain">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title mt-0"> Inscritos </h4>
+            <p class="card-category"> Lista de Inscritos</p>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead class="">
+                  <th>Nome</th>
+                  <th>Email</th>
+                  <th>CPF</th>
+                  <th>Ações</th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let u of subscribers">
+                    <td>{{u.name}}</td>
+                    <td>{{u.email}}</td>
+                    <td>{{u.cpf}}</td>
+                    <td>
+                      <div *ngIf="u.pivot.check_in == 0">
+                        <button class="btn btn-success btn-sm">
+                          <mat-icon>check</mat-icon>
+                        </button>
+                      </div>
+                      <div *ngIf="u.pivot.check_in == 1">
+                        <button class="btn btn-warning btn-sm" (click)="delete(u.pivot.id)">
+                          <mat-icon>cancel</mat-icon>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button mat-fab class="float-button" (click)="openDialog()">
+        <mat-icon>cloud_download</mat-icon>
+    </button>
+  </div>
+</div>

@@ -39,20 +39,21 @@ export class RegisterComponent implements OnInit {
     this.form = this.fb.group({
       //Primeiro parâmetro seria o valor default pra ser exibido no formulário
       //O segundo parâmetro são os arrays de validações
-      name: ['Rodrigo', [Validators.required]],
+      name: ['Isabela', [Validators.required]],
       email: [
-        'rodrigo.topan.ti@gmail.com',
+        'rodrigo.moreira0797@gmail.com',
         [Validators.required, Validators.email]
       ],
       password: ['teste123', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: [''],
+      confirmPassword: ['teste123'],
       registry_id: ['123456', [Validators.minLength(6)]],
       registry_id_2: ['', [Validators.minLength(6)]],
       phone_number: ['11994213400'],
-      cpf: ['48470476807', [Validators.required, Validators.minLength(11)]],
+      cpf: ['04027838831', [Validators.required, Validators.minLength(11)]],
       full_adress: ['Rua General', [Validators.required]],
-      whatsapp_flag: [''],
       adress_number: ['370', [Validators.required]],
+      adress_complement: ['Casa', [Validators.required]],
+      whatsapp_flag: ['0'],
       district: ['SP', [Validators.required]],
       city: ['SP', [Validators.required]],
       state: ['SP', [Validators.required]],
@@ -86,7 +87,7 @@ export class RegisterComponent implements OnInit {
         this.router.navigate(['/']);
       },
       err => {
-        console.log('Cadastro com erro');
+        console.log('Cadastro com erro', err);
         let msg: string =
           'Tente novamente em instantes ou nos contate em : (13) 99703-5994';
         if ((err['status'] = 401)) {

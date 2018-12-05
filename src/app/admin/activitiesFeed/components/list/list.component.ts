@@ -61,7 +61,7 @@ export class ListComponent implements OnInit {
   }
 
   list() {
-    console.log('idddddddddddd', this.id);
+    console.log('id', this.id);
     this.activityService.list(this.id).subscribe(
       data => {
         const activities = data.activities;

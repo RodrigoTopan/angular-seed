@@ -6,12 +6,12 @@ import { environment as env } from '../../../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class DashboardService {
-  private readonly PATH: string = 'dashboard';
+export class SubscriberService {
+  private readonly PATH: string = 'activities';
   constructor(private http: HttpClient) {}
 
-  getValues(): Observable<any> {
-    return this.http.get(env.baseApiUrl + this.PATH);
+  list(activity_id): Observable<any> {
+    return this.http.get(env.baseApiUrl + 'activities' + '/' + activity_id);
   }
+
 }
-  

@@ -1,7 +1,7 @@
 <form [formGroup]="form" novalidate>
   <div fxLayout="column" fxLayoutAlign="space-around center">
     <mat-card class="register-panel">
-      <mat-toolbar color="primary">
+      <mat-toolbar color="warn">
         <span class="fill-field">Cadastro</span>
       </mat-toolbar>
       <br>
@@ -34,8 +34,11 @@
         <mat-form-field fxFlex="40">
           <input matInput type="text" placeholder="Endereço" name="full_adress" formControlName="full_adress">
         </mat-form-field>
-        <mat-form-field fxFlex="40">
+        <mat-form-field fxFlex="10">
           <input matInput type="text" placeholder="Número do endereço" name="adress_number" formControlName="adress_number">
+        </mat-form-field>
+        <mat-form-field fxFlex="30">
+          <input matInput type="text" placeholder="Complemento" name="adress_complement" formControlName="adress_complement">
         </mat-form-field>
       </div>
       <div fxLayout="row" fxLayoutAlign="space-between">

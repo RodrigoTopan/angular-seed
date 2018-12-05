@@ -36,6 +36,8 @@ import { ActivitiesModule as AdminActivityModule } from './admin/activities/acti
 import { ActivitiesModule as AdminActivityFeedModule } from './admin/activitiesFeed/activity.module';
 import { LocationsModule as AdminLocationModule } from './admin/locations/location.module';
 import { RoomsModule as AdminRoomModule } from './admin/rooms/room.module';
+import { SubscribersModule as AdminSubscriberModule } from './admin/subscribers/subscriber.module';
+
 import { SubscriptionsModule as AdminSubscriptionModule } from './admin/subscriptions/subscription.module';
 import { FeedsModule as AdminFeedModule } from './admin/feeds/feed.module';
 
@@ -105,6 +107,7 @@ import { ActivitiesModule } from './admin/activitiesFeed/activity.module';
     AdminFeedModule,
     AdminRoomModule,
     AdminSubscriptionModule,
+    AdminSubscriberModule,
     AppRoutingModule //It must be the last imported module
   ],
   providers: [],

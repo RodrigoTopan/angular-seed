@@ -12,6 +12,7 @@ import { ListComponent as AdminLocationListComponent } from './admin/locations/c
 import { ViewComponent as AdminLocationViewComponent } from './admin/locations/components/view/view.component';
 import { EditComponent as AdminLocationEditComponent } from './admin/locations/components/edit/edit.component';
 import { ListComponent as AdminRoomListComponent } from './admin/rooms/components/list/list.component';
+import { ListComponent as AdminSubscriberListComponent } from './admin/subscribers/components/list/list.component';
 import { ListComponent as AdminSubscriptionListComponent } from './admin/subscriptions/components/list/list.component';
 import { ListComponent as AdminFeedListComponent } from './admin/feeds/components/list/list.component';
 import { ListComponent as AdminActivitiesFeedListComponent } from './admin/activitiesFeed/components/list/list.component';
@@ -124,6 +125,10 @@ export const routes: Routes = [
         component: AdminFeedListComponent
       },
       // SUBSCRIPTIONS
+      {
+        path: 'subscribers/:id',
+        component: AdminSubscriberListComponent
+      },
       {
         path: 'subscriptions',
         component: AdminSubscriptionListComponent

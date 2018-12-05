@@ -14,22 +14,30 @@
                   <th>Nome</th>
                   <th>Descrição</th>
                   <th>Inicio</th>
-                  <th>Quorum</th>
                   <th>Capacidade</th>
                   <th>Periodo</th>
                   <th>Local</th>
-                  <th>Sala</th>
+                  <th>Ações</th>
                 </thead>
                 <tbody>
                   <tr *ngFor="let a of activities">
                     <td>{{a.name}}</td>
                     <td>{{a.description}}</td>
                     <td>{{a.beginning_date}}</td>
-                    <td>{{a.minimum_quorum}}</td>
                     <td>{{a.maximum_capacity}}</td>
                     <td>{{a.schedule.name}}</td>
                     <td>{{a.location.name}}</td>
-                    <td>{{a.room.name}}</td>
+                    <td>
+                        <a [routerLink]="['../../subscribers', a.id]" class="btn btn-info btn-sm">
+                          <mat-icon>details</mat-icon>
+                        </a>
+                        <a [routerLink]="['./edit', a.id]" class="btn btn-warning btn-sm">
+                          <mat-icon>editar</mat-icon>
+                        </a>
+                        <button class="btn btn-danger btn-sm" (click)="delete(a.id)">
+                          <mat-icon>delete</mat-icon>
+                        </button>
+                    </td>
                   </tr>
                 </tbody>
               </table>

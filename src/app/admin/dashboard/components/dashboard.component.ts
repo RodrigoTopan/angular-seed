@@ -1,5 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import * as Chartist from 'chartist';
+import { Router, ActivatedRoute } from '@angular/router';
+import { DashboardService } from '../services/dashboard.service';
+import {
+  MatTableDataSource,
+  MatSnackBar,
+  PageEvent,
+  MatPaginator,
+  Sort,
+  MatSort,
+  MatDialog
+} from '@angular/material';
+import { Observable } from 'rxjs';
+import { HttpEventType } from '@angular/common/http';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,7 +20,15 @@ import * as Chartist from 'chartist';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  constructor() {}
+  constructor(
+    private route: Router,
+    private dashboardService: DashboardService,
+    private dialog: MatDialog,
+    private snackBar: MatSnackBar
+  ) {}
+
+  private values: any[] = [];
+
   startAnimationForLineChart(chart) {
     let seq: any, delays: any, durations: any;
     seq = 0;
@@ -69,11 +90,17 @@ export class DashboardComponent implements OnInit {
     seq2 = 0;
   }
   ngOnInit() {
+
+    /* -------- Pegar os valores do dashboard */
+    this.getDashboardValues();
+
+
+
     /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */
 
     const dataDailySalesChart: any = {
       labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
-      series: [[12, 17, 7, 17, 23, 18, 38]]
+      series: [[20, 3, 7, 17, 23, 18, 38]]
     };
 
     const optionsDailySalesChart: any = {
@@ -154,5 +181,20 @@ export class DashboardComponent implements OnInit {
 
     //start animation for the Emails Subscription Chart
     this.startAnimationForBarChart(websiteViewsChart);
+  }
+
+
+  getDashboardValues() {
+    this.dashboardService.getValues().subscribe(
+      data => {
+        const response = data;
+        this.values = response as any[];
+        console.log(this.values);
+      },
+      err => {
+        const msg: string = 'Erro obtendo atividades.';
+        this.snackBar.open(msg, 'Erro', { duration: 5000 });
+      }
+    );
   }
 }
