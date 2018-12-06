@@ -19,4 +19,8 @@ export class RegisterService {
   register(register: Register): Observable<any> {
     return this.http.post(env.baseApiUrl + this.PATH, register);
   }
+  
+  getBonds(): Observable<any> {
+    return this.http.get(env.baseApiUrl + 'bonds');
+  }
 }

@@ -50,7 +50,7 @@ export class ListComponent implements OnInit {
     private activityService: ActivityService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar
-  ) {}
+  ) { }
 
   ngOnInit() {
     let id = this.route.url;
@@ -105,9 +105,14 @@ export class ListComponent implements OnInit {
                 event_id: a.event_id
               };
               console.log('NOVA INSCRIÇÃO', createdSubscription);
-              this.activities.push(createdSubscription);
+              const msg: string = 'Inscrição realizada com sucesso.';
+              this.snackBar.open(msg, 'Sucesso', { duration: 5000 });
+              //this.activities.push(createdSubscription);
             }
           });
+      } else {
+        const msg: string = 'Atividade com capacidade máxima atingida ou tipo de público não correspondente.';
+        this.snackBar.open(msg, 'Sucesso', { duration: 10000 });
       }
     });
   }

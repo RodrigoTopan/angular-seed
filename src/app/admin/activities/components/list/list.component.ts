@@ -1,3 +1,4 @@
+import { Schedule } from './../../../subscribers/models/activity.model';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataSource } from '@angular/cdk/collections';
 import { ActivityService } from '../../services/activity.service';
@@ -44,6 +45,10 @@ export class ListComponent implements OnInit {
   private activities: any[] = [];
   private activity: Activity;
   private id: string;
+  private schedules: any[] = [];
+  private events: any[] = [];
+  private locations: any[] = [];
+  private rooms: any[] = []; 
 
   constructor(
     private route: Router,
@@ -61,7 +66,7 @@ export class ListComponent implements OnInit {
   }
 
   list() {
-    console.log('idddddddddddd', this.id);
+    console.log('id', this.id);
     this.activityService.list(this.id).subscribe(
       data => {
         const activities = data.activities;

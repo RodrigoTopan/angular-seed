@@ -15,31 +15,41 @@ export interface Bond {
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
+
 export class RegisterComponent implements OnInit {
   form: FormGroup;
 
-  bonds: Bond[] = [
-    { value: '0', viewValue: 'Professores' },
-    { value: '1', viewValue: 'Escola Total' },
-    { value: '2', viewValue: 'Público Externa' }
-  ];
+  private bonds: any[] = [];
 
   constructor(
     private fb: FormBuilder,
     private snackBar: MatSnackBar,
     private router: Router,
     private registerService: RegisterService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.generateForm();
+    this.loadBonds();
+  }
+
+  loadBonds(){
+    this.registerService.getBonds().subscribe(data => {
+      this.bonds = data;
+      console.log(this.bonds);
+    },
+      err => {
+        const msg: string = 'Erro obtendo os tipos de público.';
+        this.snackBar.open(msg, 'Erro', { duration: 5000 });
+      }
+    );
   }
 
   generateForm() {
     this.form = this.fb.group({
       //Primeiro parâmetro seria o valor default pra ser exibido no formulário
       //O segundo parâmetro são os arrays de validações
-      name: ['Isabela', [Validators.required]],
+      name: ['Rodrigo Garcia Topan Moreira', [Validators.required]],
       email: [
         'rodrigo.moreira0797@gmail.com',
         [Validators.required, Validators.email]
@@ -49,8 +59,8 @@ export class RegisterComponent implements OnInit {
       registry_id: ['123456', [Validators.minLength(6)]],
       registry_id_2: ['', [Validators.minLength(6)]],
       phone_number: ['11994213400'],
-      cpf: ['04027838831', [Validators.required, Validators.minLength(11)]],
-      full_adress: ['Rua General', [Validators.required]],
+      cpf: ['48470576908', [Validators.required, Validators.minLength(11)]],
+      full_adress: ['Rua General Euclides', [Validators.required]],
       adress_number: ['370', [Validators.required]],
       adress_complement: ['Casa', [Validators.required]],
       whatsapp_flag: ['0'],
@@ -59,7 +69,7 @@ export class RegisterComponent implements OnInit {
       state: ['SP', [Validators.required]],
       postal_code: ['11700780', [Validators.required]],
       bond_id: ['1'],
-      role_id: ['1']
+      role_id: ['2']
     });
   }
 
@@ -96,6 +106,5 @@ export class RegisterComponent implements OnInit {
         this.snackBar.open(msg, 'Erro', { duration: 5000 });
       }
     );
-    alert(JSON.stringify(this.form.value));
   }
 }

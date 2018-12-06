@@ -43,4 +43,8 @@ export class ActivityService {
     var formatted = year + '-' + month + '-' + day;
     return formatted;
   }
+
+  getFormValues(){
+    return this.http.get(env.baseApiUrl + 'values');
+  }
 }

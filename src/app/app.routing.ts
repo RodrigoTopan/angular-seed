@@ -36,11 +36,6 @@ export const routes: Routes = [
     path: 'admin',
     component: AdminEnterComponent,
     children: [
-      // ACCOUNT
-      {
-        path: 'account',
-        component: UserComponent
-      },
       // DASHBOARD
       {
         path: 'dashboard',
@@ -111,6 +106,22 @@ export const routes: Routes = [
         path: 'rooms/edit/:id',
         component: AdminRoomListComponent
       },
+      // SUBSCRIPTIONS
+      {
+        path: 'subscribers/:id',
+        component: AdminSubscriberListComponent
+      }
+    ]
+  },
+  {
+    path: 'public',
+    component: AdminEnterComponent,
+    children: [
+      // ACCOUNT
+      {
+        path: 'account',
+        component: UserComponent
+      },
       // FEED
       {
         path: 'feed',
@@ -123,11 +134,6 @@ export const routes: Routes = [
       {
         path: 'feed/edit/:id',
         component: AdminFeedListComponent
-      },
-      // SUBSCRIPTIONS
-      {
-        path: 'subscribers/:id',
-        component: AdminSubscriberListComponent
       },
       {
         path: 'subscriptions',

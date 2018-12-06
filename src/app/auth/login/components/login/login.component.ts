@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
     private snackbar: MatSnackBar,
     private router: Router,
     private loginService: LoginService
-  ) {}
+  ) { }
 
   ngOnInit() {
     //Método responsável por criar o formulário na instância do objeto
@@ -76,13 +76,15 @@ export class LoginComponent implements OnInit {
         console.log('Dados do usuario', JSON.stringify(userData));
         // if (userData['profile'] == '1') {
         if (userData['user']['id']) {
-          localStorage['profile'] = 'admin';
-          alert('Deve redirecionar para a página de admin');
-          this.router.navigate(['/admin/dashboard']);
-        } else if (userData['profile'] == '0') {
-          localStorage['profile'] = 'public';
-          alert('Deve redirecionar para a página de usuários públicos');
-          //this.router.navigate(['/user']);
+          const access_string = localStorage.getItem('user');
+          const access_obj = JSON.parse(access_string);
+          if (access_obj.user.role_id == 1) {
+            alert('Bem vindo, administrador');
+            this.router.navigate(['/admin/dashboard']);
+          }else{
+            alert('Bem vindo ao SEEDUC');
+            this.router.navigate(['/public/feed']);
+          }
         }
       },
       err => {
@@ -95,10 +97,10 @@ export class LoginComponent implements OnInit {
         this.snackbar.open(msg, 'Erro', { duration: 5000 });
       }
     );
-    alert(JSON.stringify(this.form.value));
   }
 
   logout() {
     localStorage['token'] = null;
   }
+  
 }

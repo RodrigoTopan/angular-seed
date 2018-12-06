@@ -33,7 +33,6 @@ export class SubscriptionService {
       'beginning_date',
       this.dateFormat(subscription.beginning_date)
     );
-    uploadData.append('end_date', this.dateFormat(subscription.end_date));
     // uploadData.append('file',file, file.name);
 
     return this.http.post(env.baseApiUrl + this.PATH, uploadData, {
@@ -55,6 +54,14 @@ export class SubscriptionService {
 
   delete(id): Observable<any> {
     return this.http.delete(env.baseApiUrl + this.PATH + '/' + id);
+  }
+
+  getCertified(params): Observable<any>{
+    return this.http.get(env.baseUrl + 'certificates/', params)
+  }
+
+  cancel(subscription_id): Observable<any> {
+    return this.http.delete(env.baseApiUrl + 'subscriptions/'+subscription_id);
   }
 
   dateFormat(dateToFormat) {

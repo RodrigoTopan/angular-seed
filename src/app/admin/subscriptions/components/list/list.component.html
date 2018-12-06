@@ -15,52 +15,48 @@
               <mat-table class="table table-hover" [dataSource]="dataSource" matSort>
                 <mat-header-row *matHeaderRowDef="colunas"></mat-header-row>
                 <mat-row *matRowDef="let row; columns: colunas;"></mat-row>
-                <ng-container matColumnDef="id">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header>
-                    Ações
-                  </mat-header-cell>
-                  <mat-cell *matCellDef="let event">
-                    <a [routerLink]="['../activities', event.id]" class="btn btn-info btn-sm">
-                      <mat-icon>details</mat-icon>
-                    </a>
-                    <a [routerLink]="['./edit', event.id]" class="btn btn-warning btn-sm">
-                      <mat-icon>editar</mat-icon>
-                    </a>
-                    <button class="btn btn-danger btn-sm" (click)="delete(event.id)">
-                      <mat-icon>delete</mat-icon>
-                    </button>
-                  </mat-cell>
-                </ng-container>
                 <ng-container matColumnDef="name">
                   <mat-header-cell *matHeaderCellDef mat-sort-header>
                     Nome
                   </mat-header-cell>
-                  <mat-cell *matCellDef="let event">
-                    {{ event.name }}
+                  <mat-cell *matCellDef="let subscription">
+                    {{ subscription.activity.name }}
                   </mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="description">
                   <mat-header-cell *matHeaderCellDef mat-sort-header>
-                    Descrição
+                    Descrição da atividade
                   </mat-header-cell>
-                  <mat-cell *matCellDef="let event">
-                    {{ event.description }}
+                  <mat-cell *matCellDef="let subscription">
+                    {{ subscription.activity.description }}
                   </mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="beginning_date">
                   <mat-header-cell *matHeaderCellDef>
                     Data Inicio
                   </mat-header-cell>
-                  <mat-cell *matCellDef="let event">
-                    {{ event.beginning_date }}
+                  <mat-cell *matCellDef="let subscription">
+                    {{ subscription.activity.beginning_date }}
                   </mat-cell>
                 </ng-container>
-                <ng-container matColumnDef="end_date">
+                <ng-container matColumnDef="certificate">
                   <mat-header-cell *matHeaderCellDef>
-                    Data Fim
+                    Cancelar/ Baixar Certificado
                   </mat-header-cell>
-                  <mat-cell *matCellDef="let event">
-                    {{ event.end_date }}
+                  <mat-cell *matCellDef="let subscription">
+                    <div *ngIf="subscription.check_in == 1">
+                      <!--<button class="btn btn-success btn-sm" (click)="getCertified(subscription.event_id,subscription.user_id,1)">-->
+                      <button class="btn btn-success btn-sm">
+                        <a href="http://localhost:8000/certificates/?event_id={{subscription.event_id}}&user_id={{subscription.user_id}}">
+                          Certificado
+                        </a>
+                      </button>
+                    </div>
+                    <div *ngIf="subscription.check_in == 0">
+                      <button class="btn btn-warning btn-sm" (click)="cancel(subscription.id,0)">
+                        <mat-icon>cancel</mat-icon>
+                      </button>
+                    </div>
                   </mat-cell>
                 </ng-container>
               </mat-table>

@@ -85,12 +85,12 @@
       </div>
       <div fxLayout="row" fxLayoutAlign="space-between">
         <mat-form-field fxFlex="100">
-          <mat-select>
+          <mat-select placeholder="Tipo de público">
             <!--<mat-option *ngFor="let food of foods" [value]="food.value">
             {{food.viewValue}}
           </mat-option>-->
-            <mat-option *ngFor="let bond of bonds" [value]="bond.value">
-              {{ bond.viewValue}}
+            <mat-option *ngFor="let bond of bonds" [value]="bond.id">
+              {{ bond.name}}
             </mat-option>
           </mat-select>
         </mat-form-field>

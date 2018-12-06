@@ -33,8 +33,7 @@ export class ListComponent implements OnInit {
     'name',
     'description',
     'beginning_date',
-    'end_date',
-    'id'
+    'certificate',
   ];
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -46,7 +45,7 @@ export class ListComponent implements OnInit {
     private subscriptionService: SubscriptionService,
     public dialog: MatDialog,
     private snackBar: MatSnackBar
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.list();
@@ -120,6 +119,64 @@ export class ListComponent implements OnInit {
       });
       this.list();
     });
+  }
+
+  getCertified(event_id, user_id, action_id) {
+    const params = {
+      event_id: event_id,
+      user_id: user_id
+    }
+    if (action_id == 1) {
+      this.subscriptionService.getCertified(params).subscribe(
+        data => {
+          const msg: string = 'Sucesso em realizar download do certificado.';
+          this.snackBar.open(msg, 'Successo', { duration: 5000 });
+          this.subscriptions = null;
+          this.dataSource = null;
+          this.list();
+        },
+        err => {
+          const msg: string = 'Erro ao realizar download do certificado.';
+          this.snackBar.open(msg, 'Erro', { duration: 5000 });
+        }
+      )
+    }
+    else if (action_id == 0 && confirm('Você confirma o cancelamento da presença?')) {
+      this.subscriptionService.getCertified(params).subscribe(
+        data => {
+          const msg: string = 'Sucesso em realizar cancelamento da inscrição.';
+          this.snackBar.open(msg, 'Successo', { duration: 5000 });
+          this.subscriptions = null;
+          this.dataSource = null;
+          this.list();
+        },
+        err => {
+          const msg: string = 'Erro ao realizar cancelamento da inscrição.';
+          this.snackBar.open(msg, 'Erro', { duration: 5000 });
+        }
+      )
+    }
+  }
+
+
+
+  cancel(subscription_id, check_in) {
+    if (check_in == 0 && confirm('Você confirma o cancelamento da inscrição?')) {
+      this.subscriptionService.cancel(subscription_id).subscribe(
+        data => {
+          const msg: string = 'Sucesso em realizar cancelamento.';
+          this.snackBar.open(msg, 'Successo', { duration: 5000 });
+          this.subscriptions = null;
+          this.dataSource = null;
+          this.list();
+        },
+        err => {
+          this.subscriptions = null;
+          this.dataSource = null;
+          this.list();
+        }
+      )
+    }
   }
 
   applyFilter(filterValue: string) {
